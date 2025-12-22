@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -25,7 +26,7 @@ class IntroScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
             Text(
-              "Personalize Your Experience",
+              "onboardingTitle".tr(),
               style: GoogleFonts.inter(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -33,7 +34,7 @@ class IntroScreen extends StatelessWidget {
               ),
             ),
             Text(
-              "Choose your preferred theme and language to get started with a comfortable, tailored experience that suits your style.",
+              "onboardingSubTitle".tr(),
               style: GoogleFonts.inter(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
@@ -45,7 +46,7 @@ class IntroScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Language",
+                  "language".tr(),
                   style: GoogleFonts.inter(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
@@ -61,25 +62,55 @@ class IntroScreen extends StatelessWidget {
                   child: Row(
                     spacing: 18,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          border: Border.all(color: Colors.blue, width: 4),
-                        ),
-                        child: Image.asset(
-                          "assets/images/Group.png",
-                          fit: BoxFit.cover,
-                          height: 30,
-                          width: 30,
+                      InkWell(
+                        onTap: () {
+                          context.setLocale(Locale("en", "US"));
+                        },
+                        child: Container(
+                          padding: context.locale == Locale("en", "US")
+                              ? null
+                              : EdgeInsets.symmetric(horizontal: 4),
+                          decoration: context.locale == Locale("en", "US")
+                              ? BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  border: Border.all(
+                                    color: Colors.blue,
+                                    width: 4,
+                                  ),
+                                )
+                              : null,
+                          child: Image.asset(
+                            "assets/images/Group.png",
+                            fit: BoxFit.cover,
+                            height: 30,
+                            width: 30,
+                          ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 4),
-                        child: Image.asset(
-                          "assets/images/EG.png",
-                          fit: BoxFit.cover,
-                          height: 30,
-                          width: 30,
+                      InkWell(
+                        onTap: () {
+                          context.setLocale(Locale("ar", "EG"));
+                        },
+                        child: Container(
+                          decoration: context.locale == Locale("ar", "EG")
+                              ? BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  border: Border.all(
+                                    color: Colors.blue,
+                                    width: 4,
+                                  ),
+                                )
+                              : null,
+
+                          padding: context.locale == Locale("ar", "EG")
+                              ? null
+                              : EdgeInsets.symmetric(horizontal: 4),
+                          child: Image.asset(
+                            "assets/images/EG.png",
+                            fit: BoxFit.cover,
+                            height: 30,
+                            width: 30,
+                          ),
                         ),
                       ),
                     ],
@@ -92,7 +123,7 @@ class IntroScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Theme",
+                  "theme".tr(),
                   style: GoogleFonts.inter(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
@@ -145,11 +176,12 @@ class IntroScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(16),
                   ),
                 ),
+
                 onPressed: () {},
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: Text(
-                    "Let’s Start",
+                    "letsStart".tr(),
                     style: GoogleFonts.inter(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
