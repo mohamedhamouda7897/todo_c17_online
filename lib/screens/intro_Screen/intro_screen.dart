@@ -10,10 +10,7 @@ class IntroScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Image.asset("assets/images/evently_logo.png"),
-      ),
+      appBar: AppBar(title: Image.asset("assets/images/evently_logo.png")),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
@@ -27,19 +24,11 @@ class IntroScreen extends StatelessWidget {
             ),
             Text(
               "onboardingTitle".tr(),
-              style: GoogleFonts.inter(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue,
-              ),
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
             Text(
               "onboardingSubTitle".tr(),
-              style: GoogleFonts.inter(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.black,
-              ),
+              style: Theme.of(context).textTheme.displayMedium,
             ),
 
             Row(
@@ -47,11 +36,7 @@ class IntroScreen extends StatelessWidget {
               children: [
                 Text(
                   "language".tr(),
-                  style: GoogleFonts.inter(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.blue,
-                  ),
+                  style: Theme.of(context).textTheme.displaySmall,
                 ),
 
                 Container(
@@ -124,11 +109,7 @@ class IntroScreen extends StatelessWidget {
               children: [
                 Text(
                   "theme".tr(),
-                  style: GoogleFonts.inter(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.blue,
-                  ),
+                  style: Theme.of(context).textTheme.displaySmall,
                 ),
 
                 Container(
@@ -171,7 +152,7 @@ class IntroScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
@@ -182,11 +163,7 @@ class IntroScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
                   child: Text(
                     "letsStart".tr(),
-                    style: GoogleFonts.inter(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.white,
-                    ),
+                    style: Theme.of(context).textTheme.displayLarge,
                   ),
                 ),
               ),

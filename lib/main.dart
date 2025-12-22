@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:todo_c17_online/core/my_theme_data.dart';
 import 'package:todo_c17_online/screens/auth/login_screen.dart';
 import 'package:todo_c17_online/screens/intro_Screen/intro_screen.dart';
 
@@ -26,6 +27,9 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       debugShowCheckedModeBanner: false,
+      theme: MyThemeData.lightTheme,
+      darkTheme: MyThemeData.darkTheme,
+      themeMode: ThemeMode.light,
       initialRoute: IntroScreen.routeName,
       routes: {
         IntroScreen.routeName: (c) => IntroScreen(),
