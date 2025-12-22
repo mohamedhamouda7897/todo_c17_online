@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_c17_online/providers/theme_provider.dart';
 
 class IntroScreen extends StatelessWidget {
   static const String routeName = "IntroScreen";
@@ -9,6 +11,7 @@ class IntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<ThemeProvider>(context);
     return Scaffold(
       appBar: AppBar(title: Image.asset("assets/images/evently_logo.png")),
       body: Padding(
@@ -120,26 +123,59 @@ class IntroScreen extends StatelessWidget {
                   child: Row(
                     spacing: 18,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          color: Colors.blue,
-                          border: Border.all(color: Colors.blue, width: 4),
-                        ),
-                        child: Image.asset(
-                          "assets/images/Sun.png",
-                          fit: BoxFit.cover,
-                          height: 30,
-                          width: 30,
+                      GestureDetector(
+                        onTap: () {
+                          provider.changeTheme(ThemeMode.light);
+                        },
+                        child: Container(
+                          padding: provider.themeMode == ThemeMode.light
+                              ? null
+                              : EdgeInsets.symmetric(horizontal: 4),
+                          decoration: provider.themeMode == ThemeMode.light
+                              ? BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: Colors.blue,
+                                  border: Border.all(
+                                    color: Colors.blue,
+                                    width: 4,
+                                  ),
+                                )
+                              : null,
+                          child: ImageIcon(
+                            AssetImage("assets/images/Sun.png"),
+                            size: 35,
+                            color: provider.themeMode == ThemeMode.light
+                                ? Theme.of(context).colorScheme.onSecondary
+                                : Theme.of(context).colorScheme.primary,
+                          ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 4),
-                        child: Image.asset(
-                          "assets/images/Moon.png",
-                          fit: BoxFit.cover,
-                          height: 30,
-                          width: 30,
+                      GestureDetector(
+                        onTap: () {
+                          provider.changeTheme(ThemeMode.dark);
+                        },
+                        child: Container(
+                          padding: provider.themeMode == ThemeMode.dark
+                              ? null
+                              : EdgeInsets.symmetric(horizontal: 4),
+
+                          decoration: provider.themeMode == ThemeMode.dark
+                              ? BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: Colors.blue,
+                                  border: Border.all(
+                                    color: Colors.blue,
+                                    width: 4,
+                                  ),
+                                )
+                              : null,
+                          child: ImageIcon(
+                            AssetImage("assets/images/Moon.png"),
+                            size: 35,
+                            color: provider.themeMode == ThemeMode.dark
+                                ? Theme.of(context).colorScheme.onSecondary
+                                : Theme.of(context).colorScheme.primary,
+                          ),
                         ),
                       ),
                     ],
