@@ -2,13 +2,19 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_c17_online/core/extensions.dart';
 import 'package:todo_c17_online/providers/theme_provider.dart';
 
-class IntroScreen extends StatelessWidget {
+class IntroScreen extends StatefulWidget {
   static const String routeName = "IntroScreen";
 
   const IntroScreen({super.key});
 
+  @override
+  State<IntroScreen> createState() => _IntroScreenState();
+}
+
+class _IntroScreenState extends State<IntroScreen> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<ThemeProvider>(context);
@@ -21,25 +27,21 @@ class IntroScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset(
-              "assets/images/creative.png",
+              context.brightness() == Brightness.light
+                  ? "assets/images/creative.png"
+                  : "assets/images/dark-creative.png",
               width: double.infinity,
               fit: BoxFit.cover,
             ),
-            Text(
-              "onboardingTitle".tr(),
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
-            Text(
-              "onboardingSubTitle".tr(),
-              style: Theme.of(context).textTheme.displayMedium,
-            ),
+            Text("onboardingTitle".tr(), style: context.bodyLarge()),
+            Text("onboardingSubTitle".tr(), style: context.displayMedium()),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   "language".tr(),
-                  style: Theme.of(context).textTheme.displaySmall,
+                  style: context.theme().textTheme.displaySmall,
                 ),
 
                 Container(
@@ -62,7 +64,7 @@ class IntroScreen extends StatelessWidget {
                               ? BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
                                   border: Border.all(
-                                    color: Colors.blue,
+                                    color: context.theme().colorScheme.primary,
                                     width: 4,
                                   ),
                                 )
@@ -84,7 +86,7 @@ class IntroScreen extends StatelessWidget {
                               ? BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
                                   border: Border.all(
-                                    color: Colors.blue,
+                                    color: context.theme().colorScheme.primary,
                                     width: 4,
                                   ),
                                 )
@@ -110,15 +112,15 @@ class IntroScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "theme".tr(),
-                  style: Theme.of(context).textTheme.displaySmall,
-                ),
+                Text("theme".tr(), style: context.displaySmall()),
 
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    border: Border.all(color: Colors.blue, width: 2),
+                    border: Border.all(
+                      color: context.theme().colorScheme.primary,
+                      width: 2,
+                    ),
                   ),
                   child: Row(
                     spacing: 18,
@@ -134,9 +136,9 @@ class IntroScreen extends StatelessWidget {
                           decoration: provider.themeMode == ThemeMode.light
                               ? BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
-                                  color: Colors.blue,
+                                  color: context.theme().colorScheme.primary,
                                   border: Border.all(
-                                    color: Colors.blue,
+                                    color: context.theme().colorScheme.primary,
                                     width: 4,
                                   ),
                                 )
@@ -162,9 +164,9 @@ class IntroScreen extends StatelessWidget {
                           decoration: provider.themeMode == ThemeMode.dark
                               ? BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
-                                  color: Colors.blue,
+                                  color: context.theme().colorScheme.primary,
                                   border: Border.all(
-                                    color: Colors.blue,
+                                    color: context.theme().colorScheme.primary,
                                     width: 4,
                                   ),
                                 )

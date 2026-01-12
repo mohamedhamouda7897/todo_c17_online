@@ -6,7 +6,16 @@ import 'package:todo_c17_online/providers/theme_provider.dart';
 import 'package:todo_c17_online/screens/auth/login_screen.dart';
 import 'package:todo_c17_online/screens/intro_Screen/intro_screen.dart';
 
+// extension StringToInt on String {
+//   int toIntOrZero() {
+//     return int.tryParse(this) ?? 0;
+//   }
+// }
+
 void main() async {
+  // String number = "123";
+  // int n=number.toIntOrZero();
+  //
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   runApp(
@@ -27,7 +36,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var provider=Provider.of<ThemeProvider>(context);
+    var provider = Provider.of<ThemeProvider>(context);
     return MaterialApp(
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
