@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "674512520804",
+    "project_id": "evently-c17-online",
+    "storage_bucket": "evently-c17-online.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:674512520804:android:20c86393b04a75f7a20171",
+        "android_client_info": {
+          "package_name": "com.example.todo_c17_online"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh5YVTP1ZGT2hEoEbSsGXCLXzFjAxTA9E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

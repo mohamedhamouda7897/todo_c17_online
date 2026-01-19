@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todo_c17_online/core/extensions.dart';
-import 'package:todo_c17_online/screens/auth/register_screen.dart';
-import 'package:todo_c17_online/screens/auth/reset_password_screen.dart';
+import 'package:todo_c17_online/screens/auth/login_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  static const String routeName = "Login";
+class RegisterScreen extends StatefulWidget {
+  static const String routeName = "Register";
 
-  const LoginScreen({super.key});
+  const RegisterScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   bool isPasswordVisible = false;
+  bool isConfirmPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Image.asset("assets/images/evently_logo.png", height: 70),
               const SizedBox(height: 40),
               Text(
-                "Login to your account",
+                "Create your account",
                 style: GoogleFonts.poppins(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -40,12 +40,31 @@ class _LoginScreenState extends State<LoginScreen> {
               const SizedBox(height: 32),
               TextFormField(
                 decoration: InputDecoration(
-                  labelText: "Enter your email",
-                  filled: true,
+                  labelText: "Enter your name",
                   labelStyle: GoogleFonts.poppins(
                     fontSize: 12,
                     color: Colors.grey,
                   ),
+                  filled: true,
+                  fillColor: Colors.white,
+                  prefixIcon: ImageIcon(
+                    AssetImage("assets/images/user.png"),
+                    color: Colors.grey,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: "Enter your email",
+                  labelStyle: GoogleFonts.poppins(
+                    fontSize: 12,
+                    color: Colors.grey,
+                  ),
+                  filled: true,
                   fillColor: Colors.white,
                   prefixIcon: Image.asset("assets/images/email_ic.png"),
                   border: OutlineInputBorder(
@@ -70,6 +89,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       isPasswordVisible
                           ? Icons.visibility
                           : Icons.visibility_off,
+
+                      color: Colors.grey,
                     ),
                     onPressed: () {
                       setState(() {
@@ -83,27 +104,47 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, ResetPasswordScreen.routeName);
-                  },
-                  child: const Text("Forgot Password?"),
+              TextFormField(
+                obscureText: !isConfirmPasswordVisible,
+                decoration: InputDecoration(
+                  labelText: "Confirm your password",
+                  filled: true,
+                  labelStyle: GoogleFonts.poppins(
+                    fontSize: 12,
+                    color: Colors.grey,
+                  ),
+                  fillColor: Colors.white,
+                  prefixIcon: Image.asset("assets/images/lock_ic.png"),
+                  suffixIcon: IconButton(
+                    icon: Icon(
+                      isConfirmPasswordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        isConfirmPasswordVisible = !isConfirmPasswordVisible;
+                      });
+                    },
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 32),
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: context.theme().colorScheme.primary,
+                  backgroundColor: const Color(0xFF3B82F6),
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
                 ),
                 child: const Text(
-                  "Login",
+                  "Sign up",
                   style: TextStyle(color: Colors.white, fontSize: 16),
                 ),
               ),
@@ -112,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don't have an account?",
+                    "Already have an account?",
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       color: Colors.grey,
@@ -122,11 +163,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () {
                       Navigator.pushReplacementNamed(
                         context,
-                        RegisterScreen.routeName,
+                        LoginScreen.routeName,
                       );
                     },
                     child: Text(
-                      "Signup",
+                      "Login",
                       style: GoogleFonts.poppins(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -137,12 +178,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
               const SizedBox(height: 16),
-              Center(child: Text("Or", style: context.bodyLarge())),
+              const Center(child: Text("Or")),
               const SizedBox(height: 16),
               ElevatedButton.icon(
                 onPressed: () {},
                 icon: Image.asset("assets/images/google.png", height: 24),
-                label: const Text("Login with Google"),
+                label: const Text("Sign up with Google"),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.black,

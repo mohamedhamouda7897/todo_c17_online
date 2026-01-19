@@ -1,10 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_c17_online/core/my_theme_data.dart';
 import 'package:todo_c17_online/providers/theme_provider.dart';
 import 'package:todo_c17_online/screens/auth/login_screen.dart';
+import 'package:todo_c17_online/screens/auth/register_screen.dart';
+import 'package:todo_c17_online/screens/auth/reset_password_screen.dart';
 import 'package:todo_c17_online/screens/intro_Screen/intro_screen.dart';
+
+import 'firebase_options.dart';
 
 // extension StringToInt on String {
 //   int toIntOrZero() {
@@ -17,7 +22,10 @@ void main() async {
   // int n=number.toIntOrZero();
   //
   WidgetsFlutterBinding.ensureInitialized();
+
   await EasyLocalization.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     EasyLocalization(
       supportedLocales: [Locale('en', 'US'), Locale('ar', 'EG')],
@@ -45,10 +53,12 @@ class MyApp extends StatelessWidget {
       theme: MyThemeData.lightTheme,
       darkTheme: MyThemeData.darkTheme,
       themeMode: provider.themeMode,
-      initialRoute: IntroScreen.routeName,
+      initialRoute: LoginScreen.routeName,
       routes: {
         IntroScreen.routeName: (c) => IntroScreen(),
-        LoginScreen.routeName: (c) => LoginScreen(),
+        LoginScreen.routeName: (c) => const LoginScreen(),
+        RegisterScreen.routeName: (c) => const RegisterScreen(),
+        ResetPasswordScreen.routeName: (c) => const ResetPasswordScreen(),
       },
     );
   }
