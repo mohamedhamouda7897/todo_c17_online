@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_c17_online/core/my_theme_data.dart';
 import 'package:todo_c17_online/providers/theme_provider.dart';
+import 'package:todo_c17_online/screens/add_event/add_event_screen.dart';
 import 'package:todo_c17_online/screens/auth/login_screen.dart';
 import 'package:todo_c17_online/screens/auth/register_screen.dart';
 import 'package:todo_c17_online/screens/auth/reset_password_screen.dart';
+import 'package:todo_c17_online/screens/home/home_screen.dart';
 import 'package:todo_c17_online/screens/intro_Screen/intro_screen.dart';
 
 import 'firebase_options.dart';
@@ -53,12 +55,14 @@ class MyApp extends StatelessWidget {
       theme: MyThemeData.lightTheme,
       darkTheme: MyThemeData.darkTheme,
       themeMode: provider.themeMode,
-      initialRoute: LoginScreen.routeName,
+      initialRoute: HomeScreen.routeName,
       routes: {
         IntroScreen.routeName: (c) => IntroScreen(),
         LoginScreen.routeName: (c) => const LoginScreen(),
         RegisterScreen.routeName: (c) => const RegisterScreen(),
+        HomeScreen.routeName: (c) => HomeScreen(),
         ResetPasswordScreen.routeName: (c) => const ResetPasswordScreen(),
+        AddEventScreen.routeName: (c) =>  AddEventScreen(),
       },
     );
   }

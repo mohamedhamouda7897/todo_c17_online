@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MyThemeData {
   static ThemeData lightTheme = ThemeData(
-
     colorScheme: ColorScheme(
       brightness: Brightness.light,
       primary: Color(0xFF0E3A99),
@@ -16,30 +15,42 @@ class MyThemeData {
       onSurface: Colors.white,
     ),
     textTheme: TextTheme(
-      bodyLarge: GoogleFonts.inter(
+      bodyLarge: GoogleFonts.poppins(
         fontSize: 20,
         fontWeight: FontWeight.bold,
-        color:  Color(0xFF0E3A99),
+        color: Color(0xFF0E3A99),
       ),
-      displayLarge: GoogleFonts.inter(
+      bodySmall: GoogleFonts.poppins(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        decoration: TextDecoration.underline,
+        decorationColor: Color(0xFF0E3A99),
+        color: Color(0xFF0E3A99),
+      ),
+      displayLarge: GoogleFonts.poppins(
         fontSize: 20,
         fontWeight: FontWeight.w500,
         color: Colors.white,
       ),
-      displaySmall: GoogleFonts.inter(
+      displaySmall: GoogleFonts.poppins(
         fontSize: 20,
         fontWeight: FontWeight.w500,
-        color:  Color(0xFF0E3A99),
+        color: Color(0xFF0E3A99),
       ),
-      displayMedium: GoogleFonts.inter(
+      displayMedium: GoogleFonts.poppins(
         fontSize: 16,
         fontWeight: FontWeight.w500,
         color: Colors.black,
       ),
+      bodyMedium: GoogleFonts.poppins(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: Color(0xFF686868),
+      ),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       showSelectedLabels: true,
-      showUnselectedLabels: false,
+      showUnselectedLabels: true,
     ),
     appBarTheme: AppBarTheme(centerTitle: true),
   );
@@ -84,5 +95,3 @@ class MyThemeData {
     appBarTheme: AppBarTheme(centerTitle: true),
   );
 }
-
-
