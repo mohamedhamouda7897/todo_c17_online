@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,8 @@ void main() async {
   await EasyLocalization.ensureInitialized();
 
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  await FirebaseFirestore.instance.enableNetwork();
   runApp(
     EasyLocalization(
       supportedLocales: [Locale('en', 'US'), Locale('ar', 'EG')],
@@ -62,7 +65,7 @@ class MyApp extends StatelessWidget {
         RegisterScreen.routeName: (c) => const RegisterScreen(),
         HomeScreen.routeName: (c) => HomeScreen(),
         ResetPasswordScreen.routeName: (c) => const ResetPasswordScreen(),
-        AddEventScreen.routeName: (c) =>  AddEventScreen(),
+        AddEventScreen.routeName: (c) => AddEventScreen(),
       },
     );
   }

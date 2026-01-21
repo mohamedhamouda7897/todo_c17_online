@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo_c17_online/core/firebase_functions.dart';
+import 'package:todo_c17_online/models/task_model.dart';
 
 class AddEventScreen extends StatefulWidget {
   static const String routeName = "AddEvent";
@@ -94,6 +96,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
             Text("Title", style: Theme.of(context).textTheme.displayMedium),
             SizedBox(height: 8),
             TextFormField(
+              controller: titleController,
               decoration: InputDecoration(
                 hintText: "Enter Event Name",
                 hintStyle: Theme.of(context).textTheme.bodyMedium,
@@ -119,6 +122,7 @@ class _AddEventScreenState extends State<AddEventScreen> {
             SizedBox(height: 8),
             TextFormField(
               maxLines: 3,
+              controller: descriptionController,
               decoration: InputDecoration(
                 hintText: "Enter Description",
                 hintStyle: Theme.of(context).textTheme.bodyMedium,
@@ -162,7 +166,16 @@ class _AddEventScreenState extends State<AddEventScreen> {
             Container(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: ()  {
+                  TaskModel task = TaskModel(
+                    category: categories[selectedCategoryIndex],
+                    date: selectedDate.millisecondsSinceEpoch,
+                    description: descriptionController.text,
+                    title: titleController.text,
+                  );
+                  FirebaseFunctions.createTask(task);
+                  Navigator.of(context).pop();
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Theme.of(context).colorScheme.primary,
                 ),
