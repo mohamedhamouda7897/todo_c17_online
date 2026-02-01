@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_c17_online/core/extensions.dart';
 import 'package:todo_c17_online/core/firebase_functions.dart';
+import 'package:todo_c17_online/providers/auth_provider.dart';
 import 'package:todo_c17_online/screens/auth/register_screen.dart';
 import 'package:todo_c17_online/screens/auth/reset_password_screen.dart';
 import 'package:todo_c17_online/screens/home/home_screen.dart';
@@ -25,6 +27,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    var authProvider = Provider.of<AuthProvider>(context);
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -112,10 +117,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     FirebaseFunctions.login(
                       emailController.text,
                       passwordController.text,
-                      onSuccess: () => Navigator.pushReplacementNamed(
-                        context,
-                        HomeScreen.routeName,
-                      ),
+                      onSuccess: () {
+                        authProvider.initUser();
+                        Navigator.pushReplacementNamed(
+                          context,
+                          HomeScreen.routeName,
+                        );
+                      },
                       onError: (message) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

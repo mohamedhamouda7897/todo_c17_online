@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:todo_c17_online/core/firebase_functions.dart';
 import 'package:todo_c17_online/models/task_model.dart';
@@ -166,8 +167,9 @@ class _AddEventScreenState extends State<AddEventScreen> {
             Container(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: ()  {
+                onPressed: () {
                   TaskModel task = TaskModel(
+                    userId: FirebaseAuth.instance.currentUser!.uid,
                     category: categories[selectedCategoryIndex],
                     date: selectedDate.millisecondsSinceEpoch,
                     description: descriptionController.text,

@@ -7,6 +7,8 @@ import 'package:todo_c17_online/screens/home/tabs/favorite_tab.dart';
 import 'package:todo_c17_online/screens/home/tabs/home_tab.dart';
 import 'package:todo_c17_online/screens/home/tabs/profile_tab.dart';
 
+import '../../providers/auth_provider.dart';
+
 class HomeScreen extends StatelessWidget {
   static const String routeName = "HomeScreen";
 
@@ -14,6 +16,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var authProvider = Provider.of<AuthProvider>(context);
     return ChangeNotifierProvider(
       create: (context) => HomeProvider(),
       builder: (context, child) {
@@ -46,7 +49,7 @@ class HomeScreen extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               subtitle: Text(
-                "John Safwat",
+                authProvider.userModel?.name ?? "",
                 style: Theme.of(
                   context,
                 ).textTheme.displaySmall!.copyWith(color: Color(0xFF1c1c1c)),

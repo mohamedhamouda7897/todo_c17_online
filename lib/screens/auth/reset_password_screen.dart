@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todo_c17_online/core/firebase_functions.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   static const String routeName = "ResetPassword";
 
-  const ResetPasswordScreen({super.key});
+  ResetPasswordScreen({super.key});
+
+  var emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +21,7 @@ class ResetPasswordScreen extends StatelessWidget {
             const SizedBox(height: 32),
             Image.asset("assets/images/reset_password_img.png"),
             TextFormField(
+              controller: emailController,
               decoration: InputDecoration(
                 labelText: "Enter your email",
                 fillColor: Colors.white,
@@ -35,7 +39,9 @@ class ResetPasswordScreen extends StatelessWidget {
             ),
             const SizedBox(height: 32),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                FirebaseFunctions.resetPassword(emailController.text);
+              },
               child: const Text("Send Reset Link"),
             ),
           ],

@@ -20,6 +20,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   var nameController = TextEditingController();
   var passwordController = TextEditingController();
   var emailController = TextEditingController();
+  var nidController = TextEditingController();
 
   var formKey = GlobalKey<FormState>();
 
@@ -106,17 +107,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
+                  keyboardType: TextInputType.number,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Please enter your NID";
+                    }
+
+                    return null;
+                  },
+                  controller: nidController,
+                  decoration: InputDecoration(
+                    labelText: "Enter your NID",
+                    labelStyle: GoogleFonts.poppins(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    prefixIcon: Image.asset("assets/images/email_ic.png"),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return "Please enter your Password";
                     }
-                    final bool passwordValid = RegExp(
-                      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$',
-                    ).hasMatch(value);
-
-                    if (!passwordValid) {
-                      return "Please enter a valid password";
-                    }
+                    // final bool passwordValid = RegExp(
+                    //   r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$',
+                    // ).hasMatch(value);
+                    //
+                    // if (!passwordValid) {
+                    //   return "Please enter a valid password";
+                    // }
                     return null;
                   },
                   controller: passwordController,
@@ -196,6 +222,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         emailController.text,
                         passwordController.text,
                         nameController.text,
+                        nidController.text,
                         onSuccess: () {
                           Navigator.pushReplacementNamed(
                             context,

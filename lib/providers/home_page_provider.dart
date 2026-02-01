@@ -23,8 +23,11 @@ class HomePageProvider extends ChangeNotifier {
 
   int selectedCategoryIndex = 0;
 
+  StreamSubscription<QuerySnapshot<TaskModel>>? _tasksSubscription;
+
   changeCategory(int index) {
     selectedCategoryIndex = index;
+    getTasksStream();
     notifyListeners();
   }
 
@@ -43,7 +46,8 @@ class HomePageProvider extends ChangeNotifier {
   // }
 
   getTasksStream() {
-    FirebaseFunctions.getTasksStream(
+    _tasksSubscription?.cancel();
+    _tasksSubscription = FirebaseFunctions.getTasksStream(
       category: selectedCategoryIndex == 0
           ? null
           : categories[selectedCategoryIndex],
@@ -55,5 +59,11 @@ class HomePageProvider extends ChangeNotifier {
 
   updateTask(TaskModel task) async {
     await FirebaseFunctions.updateTask(task);
+  }
+
+  @override
+  void dispose() {
+    _tasksSubscription?.cancel();
+    super.dispose();
   }
 }
